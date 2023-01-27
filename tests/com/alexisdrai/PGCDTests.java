@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.alexisdrai.PGCD;
-
 public class PGCDTests {
     private PGCD pgcd;
     private static Random rdm;
