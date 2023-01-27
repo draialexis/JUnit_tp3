@@ -2,25 +2,16 @@ package com.alexisdrai;
 
 public class PGCD {
     public int pgcd(int a, int b) {
+        a = Math.abs(a);
+        b = Math.abs(b);
 
-        if (a == 0) {
-            return Math.abs(b);
+        if (b != 0 && (a == 0 || a % b == 0)) {
+            return b;
         }
-        if (b == 0) {
-            return Math.abs(a);
-        }
-        if (a == 0 && b == 0) {
-            return 0;
-        }
-        if (a == b) {
+        if (b == 0 || b % a == 0) {
             return a;
         }
-        if (a % b == 0) {
-            return Math.abs(b);
-        }
-        if (b % a == 0) {
-            return Math.abs(a);
-        }
+
         return pgcd(b, a % b);
     }
 }
