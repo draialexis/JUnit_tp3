@@ -108,7 +108,7 @@ public class FibonacciTests {
     }
 
     @Test
-    void fibFortyTwoThrows() {
+    void fibOverFortyOneThrows() {
         // Arrange
 
         // Act
@@ -116,14 +116,17 @@ public class FibonacciTests {
 
         // Assert
         Exception exc = assertThrows(IllegalArgumentException.class, () -> fibonacci.fib(n));
-        assertEquals(exc.getMessage(), "fib(42) would exceed Integer.MAX_VALUE");
+        assertEquals(exc.getMessage(), "fib(n>41) would exceed Integer.MAX_VALUE");
     }
 
     @Test
     void fibNReturnsNMinOnePlusNMinTwo() {
         for (int i = 0; i < 100; i++) {
             // Arrange
-            int n = rdm.nextInt(42); // after fib(41), we're out of INT territory
+            int n = rdm.nextInt(40) + 2;
+            // before fib(2), the formula is different,
+            // and after fib(41), we're out of INT territory
+
             int expected = fibonacci.fib(n - 1) + fibonacci.fib(n - 2);
 
             // Act
