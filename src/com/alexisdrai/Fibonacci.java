@@ -14,12 +14,6 @@ public class Fibonacci {
         if (n == 1) {
             return 1;
         }
-        if (n == 8) {
-            return 21;
-        }
-        if (n == 41) {
-            return 165_580_141;
-        }
         return fib(n - 1) + fib(n - 2);
     }
 }
