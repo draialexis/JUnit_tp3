@@ -5,11 +5,12 @@ public class PGCD {
         a = Math.abs(a);
         b = Math.abs(b);
 
-        if (b != 0 && (a == 0 || a % b == 0)) {
-            return b;
-        }
-        if (b == 0 || b % a == 0) {
+        if (b == 0) {
             return a;
+        }
+
+        if (a % b == 0) {
+            return b;
         }
 
         return pgcd(b, a % b);
