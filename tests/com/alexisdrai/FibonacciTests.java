@@ -16,18 +16,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class FibonacciTests {
 
-    private Fibonacci fibonacci;
-
-    @BeforeEach
-    void initEach() {
-        fibonacci = new Fibonacci();
-    }
-
     private static Random rdm;
+    private Fibonacci fibonacci;
 
     @BeforeAll
     static void initAll() {
         rdm = new Random();
+    }
+
+    @BeforeEach
+    void initEach() {
+        fibonacci = new Fibonacci();
     }
 
     @Test

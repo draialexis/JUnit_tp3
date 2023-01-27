@@ -1,16 +1,16 @@
 package com.alexisdrai;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Random;
-
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class PGCDTests {
-    private PGCD pgcd;
     private static Random rdm;
+    private PGCD pgcd;
 
     @BeforeAll
     static void initAll() {
@@ -141,7 +141,7 @@ public class PGCDTests {
     @Test
     void pgcdRdm() {
 
-        for(int i = 0 ; i <1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             // Arrange
 
             int rdmA = rdm.nextInt();
@@ -149,16 +149,23 @@ public class PGCDTests {
 
             int expected;
 
-            if(rdmA == rdmB) {
+            if (rdmA == rdmB) {
                 expected = rdmA;
-            } else if(rdmA % rdmB == 0) {
-                expected = rdmB;
-            } else if(rdmB % rdmA == 0) {
-                expected = rdmA;
-            } else {
-                expected = pgcd.pgcd(rdmA, rdmB);
-                assertEquals(0, rdmA % expected);
-                assertEquals(0, rdmB % expected);
+            }
+            else {
+                if (rdmA % rdmB == 0) {
+                    expected = rdmB;
+                }
+                else {
+                    if (rdmB % rdmA == 0) {
+                        expected = rdmA;
+                    }
+                    else {
+                        expected = pgcd.pgcd(rdmA, rdmB);
+                        assertEquals(0, rdmA % expected);
+                        assertEquals(0, rdmB % expected);
+                    }
+                }
             }
 
             // Act
@@ -174,7 +181,7 @@ public class PGCDTests {
     @Test
     void pgcdRdmWithZero() {
 
-        for(int i = 0 ; i <1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             // Arrange
 
             int rdmA, rdmB, expected;
@@ -183,7 +190,8 @@ public class PGCDTests {
                 rdmA = rdm.nextInt();
                 expected = Math.abs(rdmA);
                 rdmB = 0;
-            } else {
+            }
+            else {
                 rdmB = rdm.nextInt();
                 expected = Math.abs(rdmB);
                 rdmA = 0;
