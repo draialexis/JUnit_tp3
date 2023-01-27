@@ -170,4 +170,32 @@ public class PGCDTests {
             assertEquals(expected, actual);
         }
     }
+
+    @Test
+    void pgcdRdmWithZero() {
+
+        for(int i = 0 ; i <1000; i++) {
+            // Arrange
+
+            int rdmA, rdmB, expected;
+
+            if (i % 2 == 0) {
+                rdmA = rdm.nextInt();
+                expected = Math.abs(rdmA);
+                rdmB = 0;
+            } else {
+                rdmB = rdm.nextInt();
+                expected = Math.abs(rdmB);
+                rdmA = 0;
+            }
+
+            // Act
+
+            long actual = pgcd.pgcd(rdmA, rdmB);
+
+            // Assert
+
+            assertEquals(expected, actual);
+        }
+    }
 }
