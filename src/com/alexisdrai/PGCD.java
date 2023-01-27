@@ -5,14 +5,10 @@ public class PGCD {
         a = Math.abs(a);
         b = Math.abs(b);
 
-        if (b == 0) {
-            return a;
-        }
+        if (b == 0) { return a; }
 
-        if (a % b == 0) {
-            return b;
-        }
-
-        return pgcd(b, a % b);
+        int q = a % b;
+        if (q == 0) { return b; }
+        else { return pgcd(b, q); }
     }
 }
