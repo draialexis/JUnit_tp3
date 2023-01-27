@@ -22,7 +22,7 @@ public class FibonacciTests {
 
     @Test
     void canBeCted() {
-        assertNotNull(new Fibonacci());
+        assertInstanceOf(Fibonacci.class, new Fibonacci());
     }
 
     @Test
