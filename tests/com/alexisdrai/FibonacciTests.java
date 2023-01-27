@@ -123,11 +123,13 @@ public class FibonacciTests {
     void fibNReturnsNMinOnePlusNMinTwo() {
         for (int i = 0; i < 100; i++) {
             // Arrange
-            int n = rdm.nextInt(40) + 2;
-            // before fib(2), the formula is different,
-            // and after fib(41), we're out of INT territory
-
-            int expected = fibonacci.fib(n - 1) + fibonacci.fib(n - 2);
+            int n = rdm.nextInt(42);
+            // after fib(41), we're out of INT territory
+            int expected = switch (n) {
+                case (0) -> 0;
+                case (1) -> 1;
+                default -> fibonacci.fib(n - 1) + fibonacci.fib(n - 2);
+            };
 
             // Act
             int actual = fibonacci.fib(n);
