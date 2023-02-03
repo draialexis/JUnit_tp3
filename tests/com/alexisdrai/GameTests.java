@@ -152,4 +152,43 @@ public class GameTests {
         // Assert
         assertEquals(expected, actual);
     }
+
+    @Test
+    void gameNextPlayerFoundStart() {
+        // Arrange
+        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}});
+        char expected = 'x';
+
+        // Act
+        char actual = game.nextPlayer();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void gameNextPlayerFoundMiddle() {
+        // Arrange
+        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', 'x', 'o'}, {'_', '_', 'x'}});
+        char expected = 'o';
+
+        // Act
+        char actual = game.nextPlayer();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void gameNextPlayerFoundEnd() {
+        // Arrange
+        game.setBoard(new char[][]{{'x', 'o', 'x'}, {'o', 'o', 'x'}, {'_', 'x', 'o'}});
+        char expected = 'x';
+
+        // Act
+        char actual = game.nextPlayer();
+
+        // Assert
+        assertEquals(expected, actual);
+    }
 }
