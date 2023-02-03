@@ -48,7 +48,7 @@ class PythagorasTests {
 			pyth.pythagoras(x, y, z);
 		});
 		
-		assertEquals(exc.getMessage(), "there is no such thing as a negative length");
+		assertEquals(exc.getMessage(), "there is no such thing as a length less than or equal to zero");
 	}
 	
 	@ParameterizedTest
