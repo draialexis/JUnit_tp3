@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 public class PGCDTests {
     private static Random rdm;
@@ -22,6 +23,11 @@ public class PGCDTests {
         pgcd = new PGCD();
     }
 
+    @Test
+    void canBeCted() {
+        assertInstanceOf(PGCD.class, new PGCD());
+    }
+    
     // --------------
     // add
     // --------------

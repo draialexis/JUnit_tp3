@@ -2,15 +2,16 @@ package com.alexisdrai;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Random;
+import java.util.stream.LongStream;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
-class OperationsTests {
+class PythagorasTests {
 
 	private Pythagoras pyth;
 	private static Random rdm;
@@ -28,6 +29,11 @@ class OperationsTests {
 	// --------------
 	// pythagoras
 	// --------------
+	
+    @Test
+    void canBeCted() {
+        assertInstanceOf(Pythagoras.class, new Pythagoras());
+    }
 	
 	@ParameterizedTest
 	@ArgumentsSource(pythBasicArgumentsProvider.class)
@@ -51,6 +57,34 @@ class OperationsTests {
 		assertFalse(pyth.pythagoras(x, y, z));
 	}
 	
-	//TODO add math seed
+	@Test
+    void fibNReturnsNMinOnePlusNMinTwo() {
+        for (int i = 0; i < 1000; i++) {
+            // Arrange
+        	
+        	// the odds of randomly generating a rectangle triangle seem very slim. 
+        	
+        	// also, since they will be squared, we limit our RNG to [0 ; sqrt(Long.MAX)]
+        	long sqrtMax = 3_037_000_499L;
+            long n1 = rdm.nextLong(sqrtMax);
+            long n2 = rdm.nextLong(sqrtMax);
+            long n3 = rdm.nextLong(sqrtMax);
+            LongStream.of(n1, n2, n3).forEach(x -> x = x < 0 ? x * (-1) : x);
+            
+            boolean tmp = false;
+            if((n1 * n1) + (n2 * n2) == (n3 * n3)
+            || (n1 * n1) + (n3 * n3) == (n2 * n2)
+            || (n3 * n3) + (n2 * n2) == (n1 * n1)) {
+            	tmp = true;
+            }
+            boolean expected = tmp;
+
+            // Act
+            boolean actual = pyth.pythagoras(n1, n2, n3);
+
+            // Assert
+            assertEquals(expected, actual);
+        }
+    }
 	
 }
