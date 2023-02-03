@@ -27,7 +27,7 @@ public class PGCDTests {
     void canBeCted() {
         assertInstanceOf(PGCD.class, new PGCD());
     }
-    
+
     // --------------
     // add
     // --------------
