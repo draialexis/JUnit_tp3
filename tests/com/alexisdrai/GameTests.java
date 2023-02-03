@@ -32,7 +32,7 @@ public class GameTests {
 
     @ParameterizedTest
     @ArgumentsSource(gameFillBoardOkArgumentProvider.class)
-    void gameEmptyBoardGetsFilled(char[][] originalBoard, int x, int y, String expected) {
+    void gameEmptyBoardGetsFilled(char[][] originalBoard, int x, int y, char[][] expected) {
         // Arrange
         game.setBoard(originalBoard);
 
@@ -40,7 +40,7 @@ public class GameTests {
         game.play(x, y);
 
         // Assert
-        assertEquals(expected, game.getBoard().toString());
+        assertArrayEquals(expected, game.getBoard());
     }
 
 }
