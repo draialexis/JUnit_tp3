@@ -27,7 +27,9 @@ public class GameTests {
 
     @Test
     void canBeCted() {
-        assertInstanceOf(Game.class, new Game());
+        assertInstanceOf(Game.class, game);
+        assertEquals(3, game.getBoard().length); // rows
+        assertEquals(3, game.getBoard()[0].length); // cols
     }
 
     @ParameterizedTest
@@ -124,11 +126,11 @@ public class GameTests {
     @Test
     void gameBoardDisplayNotEmpty() {
         // Arrange
-        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', 'x', 'o'}, {'_', '_', 'x'}});
+        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', 'x', '_'}, {'_', '_', '_'}});
         String expected = """
                           _ _ _
-                          _ x o
-                          _ _ x""";
+                          _ x _
+                          _ _ _""";
 
         // Act
         String actual = game.display();
@@ -191,4 +193,8 @@ public class GameTests {
         // Assert
         assertEquals(expected, actual);
     }
+
+    // TODO seed nextplayer
+    // TODO seed isover
+    // TODO seed fillboard
 }
