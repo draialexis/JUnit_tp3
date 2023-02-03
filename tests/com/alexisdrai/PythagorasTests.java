@@ -58,18 +58,45 @@ class PythagorasTests {
 	}
 	
 	@Test
-    void fibNReturnsNMinOnePlusNMinTwo() {
+    void pythRdmLikelyFalse() {
         for (int i = 0; i < 1000; i++) {
             // Arrange
         	
         	// the odds of randomly generating a rectangle triangle seem very slim. 
         	
-        	// also, since they will be squared, we limit our RNG to [0 ; sqrt(Long.MAX)]
-        	long sqrtMax = 3_037_000_499L;
-            long n1 = rdm.nextLong(sqrtMax);
-            long n2 = rdm.nextLong(sqrtMax);
-            long n3 = rdm.nextLong(sqrtMax);
+        	// also, since they will be squared, we limit our RNG to ]0 ; sqrt(Long.MAX)]
+        	long sqrtMaxMinOne = 3_037_000_499L;
+            long n1 = rdm.nextLong(sqrtMaxMinOne) + 1;
+            long n2 = rdm.nextLong(sqrtMaxMinOne) + 1;
+            long n3 = rdm.nextLong(sqrtMaxMinOne) + 1;
             LongStream.of(n1, n2, n3).forEach(x -> x = x < 0 ? x * (-1) : x);
+            
+            boolean tmp = false;
+            if((n1 * n1) + (n2 * n2) == (n3 * n3)
+            || (n1 * n1) + (n3 * n3) == (n2 * n2)
+            || (n3 * n3) + (n2 * n2) == (n1 * n1)) {
+            	tmp = true;
+            }
+            boolean expected = tmp;
+
+            // Act
+            boolean actual = pyth.pythagoras(n1, n2, n3);
+
+            // Assert
+            assertEquals(expected, actual);
+        }
+    }
+	
+	@Test
+    void pythRdmLikelyTrue() {
+        for (int i = 0; i < 1000; i++) {
+            // Arrange
+        	
+        	// improving the odds of randomly generating a rectangle triangle, playing within ]0 ; 15]
+
+            long n1 = rdm.nextLong(15) + 1;
+            long n2 = rdm.nextLong(15) + 1;
+            long n3 = rdm.nextLong(15) + 1;
             
             boolean tmp = false;
             if((n1 * n1) + (n2 * n2) == (n3 * n3)
