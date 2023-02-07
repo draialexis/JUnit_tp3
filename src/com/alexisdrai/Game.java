@@ -1,14 +1,16 @@
 package com.alexisdrai;
 
 public class Game {
-    private char[][] board;
+    private final char[][] board;
+    public Game() {
+        board = new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
+    }
 
     public char[][] getBoard() {
-        return new char[0][];
+        return board;
     }
 
-    public void setBoard(char[][] inBoard) {
-    }
+    public void setBoard(char[][] inBoard) {}
 
     public boolean play(int x, int y) {
         return false;
@@ -25,4 +27,7 @@ public class Game {
     public char nextPlayer() {
         return 0;
     }
+
+    public int[] input() {return new int[]{0, 0};}
+    // will not be tested, uses Scanner and manual input, will be very simple
 }
