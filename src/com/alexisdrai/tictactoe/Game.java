@@ -49,7 +49,11 @@ public class Game {
     private boolean isFull() {
         for (int i = 0; i < ROW_SIZE; i++) {
             for (int j = 0; j < COLUMN_SIZE; j++) {
-                if (board[i][j] == '_') {
+                char ch = board[i][j];
+                if (ch != '_' && ch != 'o' && ch != 'x') {
+                    throw new IllegalStateException("'" + ch + "' is not a valid tile");
+                }
+                if (ch == '_') {
                     return false;
                 }
             }
