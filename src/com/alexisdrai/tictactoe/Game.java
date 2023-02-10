@@ -162,29 +162,20 @@ public class Game {
 
     public String display() {
 
-        String result = "";
-        if (Arrays.deepEquals(board, new char[][]{{'x', 'o', 'x'}, {'o', 'o', 'x'}, {'x', 'x', 'o'}})) {
-            result = """
-                     x o x
-                     o o x
-                     x x o""";
-        }
-        else {
-            if (Arrays.deepEquals(board, new char[][]{{'_', '_', '_'}, {'_', 'x', '_'}, {'_', '_', '_'}})) {
-                result = """
-                         _ _ _
-                         _ x _
-                         _ _ _""";
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                result.append(board[i][j]);
+                if (j < 2) {
+                    result.append(" ");
+                }
             }
-            else {
-                if (Arrays.deepEquals(board, new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}})) {
-                    result = """
-                             _ _ _
-                             _ _ _
-                             _ _ _""";
-                } //TODO : add seeded test for display... :(
+            if (i < 2) {
+                result.append('\n');
             }
         }
-        return result;
+
+        return result.toString();
     }
 }
