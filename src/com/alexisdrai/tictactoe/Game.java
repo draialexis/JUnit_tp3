@@ -4,14 +4,16 @@ import java.util.Arrays;
 
 public class Game {
     private static final char[][] EMPTY = new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
+    public static final int ROW_SIZE = 3;
+    public static final int COLUMN_SIZE = 3;
 
-    private final char[][] board = new char[3][3];
+    private final char[][] board = new char[ROW_SIZE][COLUMN_SIZE];
 
     private char nextPlayer;
 
     public Game() {
-        for (int i = 0; i < 3; ++i) {
-            System.arraycopy(EMPTY[i], 0, board[i], 0, 3);
+        for (int i = 0; i < ROW_SIZE; ++i) {
+            System.arraycopy(EMPTY[i], 0, board[i], 0, COLUMN_SIZE);
         }
         nextPlayer = 'x';
     }
@@ -21,18 +23,18 @@ public class Game {
     }
 
     public char[][] getBoard() {
-        return Arrays.copyOf(board, 3);
+        return Arrays.copyOf(board, ROW_SIZE);
     }
 
     public void setBoard(char[][] inBoard) {
-        for (int i = 0; i < 3; ++i) {
-            System.arraycopy(inBoard[i], 0, board[i], 0, 3);
+        for (int i = 0; i < ROW_SIZE; ++i) {
+            System.arraycopy(inBoard[i], 0, board[i], 0, COLUMN_SIZE);
         }
     }
 
     public boolean play(int x, int y) {
         boolean result = false;
-        if (x < 0 || x > 2 || y < 0 || y > 2 || isFull()) {
+        if (x < 0 || x >= ROW_SIZE || y < 0 || y >= COLUMN_SIZE || isFull()) {
             return false;
         }
 
@@ -97,8 +99,8 @@ public class Game {
     }
 
     private boolean isFull() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < ROW_SIZE; i++) {
+            for (int j = 0; j < COLUMN_SIZE; j++) {
                 if (board[i][j] == '_') {
                     return false;
                 }
@@ -145,8 +147,8 @@ public class Game {
 
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < ROW_SIZE; i++) {
+            for (int j = 0; j < COLUMN_SIZE; j++) {
                 result.append(board[i][j]);
                 if (j < 2) {
                     result.append(" ");

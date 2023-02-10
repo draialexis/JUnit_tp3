@@ -28,10 +28,10 @@ public class GameTests {
     @Test
     void canBeConstructed() {
         assertInstanceOf(Game.class, game);
-        assertEquals(3, game.getBoard().length); // rows
-        assertEquals(3, game.getBoard()[0].length); // cols
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        assertEquals(Game.ROW_SIZE, game.getBoard().length); // rows
+        assertEquals(Game.COLUMN_SIZE, game.getBoard()[0].length); // cols
+        for (int i = 0; i < Game.ROW_SIZE; i++) {
+            for (int j = 0; j < Game.COLUMN_SIZE; j++) {
                 assertEquals('_', game.getBoard()[i][j]); // should be initialized empty
             }
         }
@@ -217,8 +217,8 @@ public class GameTests {
         char expected = 'x';
 
         for (int i = 0; i < 100; i++) {
-            int x = rdm.nextInt(3);
-            int y = rdm.nextInt(3);
+            int x = rdm.nextInt(Game.ROW_SIZE);
+            int y = rdm.nextInt(Game.COLUMN_SIZE);
 
             assertEquals(expected, game.getNextPlayer());
 
@@ -257,7 +257,7 @@ public class GameTests {
 
             int validPlays = 0;
             for (int i = 0; i < rdm.nextInt(20); i++) { // might fill the board, might not
-                if (game.play(rdm.nextInt(3), rdm.nextInt(3))) {
+                if (game.play(rdm.nextInt(Game.ROW_SIZE), rdm.nextInt(Game.COLUMN_SIZE))) {
                     ++validPlays;
                 }
             }
