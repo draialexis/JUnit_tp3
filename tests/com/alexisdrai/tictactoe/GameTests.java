@@ -70,7 +70,7 @@ public class GameTests {
     @Test
     void gamePlayerIsNotSkippedAfterMissing() {
         // Arrange
-        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', 'x'}, {'_', '_', '_'}});
+        game.play(1, 2);
         boolean output;
 
         // Act

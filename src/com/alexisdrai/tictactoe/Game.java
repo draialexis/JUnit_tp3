@@ -38,58 +38,6 @@ public class Game {
             return false;
         }
 
-        if (Arrays.deepEquals(board, EMPTY) && x == 0 && y == 0) {
-            board[0][0] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 0 && y == 1) {
-            board[0][1] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 0 && y == 2) {
-            board[0][2] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 1 && y == 0) {
-            board[1][0] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 1 && y == 1) {
-            board[1][1] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 1 && y == 2) {
-            board[1][2] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 2 && y == 0) {
-            board[2][0] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 2 && y == 1) {
-            board[2][1] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, EMPTY) && x == 2 && y == 2) {
-            board[2][2] = 'x';
-            result = true;
-            nextTurn();
-        }
-        if (Arrays.deepEquals(board, new char[][]{{'_', '_', '_'}, {'_', '_', 'x'}, {'_', '_', '_'}}) && x == 2 &&
-            y == 1)
-        {
-            board[2][1] = 'o';
-            result = true;
-            nextTurn();
-        }
         if (board[x][y] == '_') {
             board[x][y] = nextPlayer;
             result = true;
