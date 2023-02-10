@@ -263,21 +263,20 @@ public class GameTests {
             }
 
             char[][] board = game.getBoard();
-            if (validPlays == 9) { // if full
-                expected = true;
-            }
-            else { // only 8 ways to win this
-                expected = ((board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||
-                            (board[1][0] == board[1][1] && board[1][1] == board[1][2]) ||
-                            (board[2][0] == board[2][1] && board[2][1] == board[2][2])
 
-                            || (board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||
-                            (board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||
-                            (board[0][2] == board[1][2] && board[1][2] == board[2][2])
+            // only 8 ways to win this if not full
+            expected = (validPlays == 9 ||
 
-                            || (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-                            (board[0][2] == board[1][1] && board[1][1] == board[2][0]));
-            }
+                        (board[0][0] != '_' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||
+                        (board[1][0] != '_' && board[1][0] == board[1][1] && board[1][1] == board[1][2]) ||
+                        (board[2][0] != '_' && board[2][0] == board[2][1] && board[2][1] == board[2][2]) ||
+
+                        (board[0][0] != '_' && board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||
+                        (board[0][1] != '_' && board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||
+                        (board[0][2] != '_' && board[0][2] == board[1][2] && board[1][2] == board[2][2]) ||
+
+                        (board[0][0] != '_' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+                        (board[0][2] != '_' && board[0][2] == board[1][1] && board[1][1] == board[2][0]));
 
             // Act
             boolean actual = game.isOver();

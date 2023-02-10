@@ -21,7 +21,7 @@ public class Game {
     }
 
     public char[][] getBoard() {
-        return board;
+        return Arrays.copyOf(board, 3);
     }
 
     public void setBoard(char[][] inBoard) {
@@ -32,21 +32,7 @@ public class Game {
 
     public boolean play(int x, int y) {
         boolean result = false;
-        if (x < 0 || x > 2 || y < 0 || y > 2) {
-            return false;
-        }
-
-        boolean isFull = true;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == '_') {
-                    isFull = false;
-                    break;
-                }
-            }
-        }
-
-        if (isFull) {
+        if (x < 0 || x > 2 || y < 0 || y > 2 || isFull()) {
             return false;
         }
 
@@ -110,6 +96,17 @@ public class Game {
         return result;
     }
 
+    private boolean isFull() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] == '_') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private void nextTurn() {
         if (nextPlayer == 'x') {
             nextPlayer = 'o';
@@ -122,42 +119,26 @@ public class Game {
     }
 
     public boolean isOver() {
-        boolean result = (board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||
-                         (board[1][0] == board[1][1] && board[1][1] == board[1][2]) ||
-                         (board[2][0] == board[2][1] && board[2][1] == board[2][2]) ||
-                         (board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||
-                         (board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||
-                         (board[0][2] == board[1][2] && board[1][2] == board[2][2]) ||
-                         (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
-                         (board[0][2] == board[1][1] && board[1][1] == board[2][0]);
-
-        if (Arrays.deepEquals(board, new char[][]{{'o', 'x', 'o'}, {'o', 'x', 'x'}, {'x', 'o', 'x'}})) {
-            result = true;
-        }
-        if (Arrays.deepEquals(board, new char[][]{{'x', 'o', '_'}, {'x', 'o', 'x'}, {'_', 'o', '_'}})) {
-            result = true;
-        }
-        if (Arrays.deepEquals(board, new char[][]{{'_', 'o', 'o'}, {'_', '_', 'o'}, {'x', 'x', 'x'}})) {
-            result = true;
-        }
-        if (Arrays.deepEquals(board, new char[][]{{'x', '_', '_'}, {'_', 'x', 'o'}, {'o', '_', 'x'}})) {
-            result = true;
-        }
-        if (Arrays.deepEquals(board, new char[][]{{'_', '_', 'o'}, {'_', 'o', 'x'}, {'o', 'x', 'x'}})) {
-            result = true;
-        }
-
         if (Arrays.deepEquals(board, EMPTY)) {
-            result = false;
+            return false;
         }
-        if (Arrays.deepEquals(board, new char[][]{{'o', 'x', 'o'}, {'o', 'x', 'x'}, {'x', 'o', '_'}})) {
-            result = false;
-        }
-        if (Arrays.deepEquals(board, new char[][]{{'_', '_', '_'}, {'_', 'x', '_'}, {'o', '_', '_'}})) {
-            result = false;
-        }
+        return isFull() ||
 
-        return result;
+               (board[0][0] == board[0][1] && board[0][1] == board[0][2] && isAPlayer(board[0][0])) ||
+               (board[1][0] == board[1][1] && board[1][1] == board[1][2] && isAPlayer(board[1][0])) ||
+               (board[2][0] == board[2][1] && board[2][1] == board[2][2] && isAPlayer(board[2][0])) ||
+
+               (board[0][0] == board[1][0] && board[1][0] == board[2][0] && isAPlayer(board[0][0])) ||
+               (board[0][1] == board[1][1] && board[1][1] == board[2][1] && isAPlayer(board[0][1])) ||
+               (board[0][2] == board[1][2] && board[1][2] == board[2][2] && isAPlayer(board[0][2])) ||
+
+               (board[0][0] == board[1][1] && board[1][1] == board[2][2] && isAPlayer(board[0][0])) ||
+               (board[0][2] == board[1][1] && board[1][1] == board[2][0] && isAPlayer(board[0][2]));
+
+    }
+
+    private boolean isAPlayer(char c) {
+        return c == 'x' || c == 'o';
     }
 
     public String display() {
