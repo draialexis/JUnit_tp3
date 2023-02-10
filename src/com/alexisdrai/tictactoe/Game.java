@@ -16,7 +16,9 @@ public class Game {
     }
 
     public void setBoard(char[][] inBoard) {
-        board = inBoard;
+        for (int i = 0; i < 3; ++i) {
+            System.arraycopy(inBoard[i], 0, board[i], 0, 3);
+        }
     }
 
     public boolean play(int x, int y) {
@@ -24,32 +26,40 @@ public class Game {
 
         if (Arrays.deepEquals(board, EMPTY) && x == 0 && y == 0) {
             board[0][0] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 0 && y == 1) {
             board[0][1] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 0 && y == 2) {
             board[0][2] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 1 && y == 0) {
             board[1][0] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 1 && y == 1) {
             board[1][1] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 1 && y == 2) {
             board[1][2] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 2 && y == 0) {
             board[2][0] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 2 && y == 1) {
             board[2][1] = 'x';
+            return true;
         }
         if (Arrays.deepEquals(board, EMPTY) && x == 2 && y == 2) {
             board[2][2] = 'x';
+            return true;
         }
-
 
         return result;
     }

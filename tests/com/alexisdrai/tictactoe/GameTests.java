@@ -1,10 +1,5 @@
 package com.alexisdrai.tictactoe;
 
-import com.alexisdrai.tictactoe.gameDoNotFinishArgumentProvider;
-import com.alexisdrai.tictactoe.gameFillBoardKoArgumentProvider;
-import com.alexisdrai.tictactoe.gameFillBoardOkArgumentProvider;
-import com.alexisdrai.tictactoe.gameFinishArgumentProvider;
-import com.alexisdrai.tictactoe.Game;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -280,18 +275,16 @@ public class GameTests {
             char[][] board = game.getBoard();
             if (!expected) { // if not full, check for winner instead
                 // only 8 ways to win this
-                expected = (
-                        (board[0][0] == board[0][1] &&  board[0][1] == board [0][2])
-                        || (board[1][0] == board[1][1] &&  board[1][1] == board [1][2])
-                        || (board[2][0] == board[2][1] &&  board[2][1] == board [2][2])
+                expected = ((board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||
+                            (board[1][0] == board[1][1] && board[1][1] == board[1][2]) ||
+                            (board[2][0] == board[2][1] && board[2][1] == board[2][2])
 
-                        || (board[0][0] == board[1][0] &&  board[1][0] == board [2][0])
-                        || (board[0][1] == board[1][1] &&  board[1][1] == board [2][1])
-                        || (board[0][2] == board[1][2] &&  board[1][2] == board [2][2])
+                            || (board[0][0] == board[1][0] && board[1][0] == board[2][0]) ||
+                            (board[0][1] == board[1][1] && board[1][1] == board[2][1]) ||
+                            (board[0][2] == board[1][2] && board[1][2] == board[2][2])
 
-                        || (board[0][0] == board[1][1] &&  board[1][1] == board [2][2])
-                        || (board[0][2] == board[1][1] &&  board[1][1] == board [2][0])
-                );
+                            || (board[0][0] == board[1][1] && board[1][1] == board[2][2]) ||
+                            (board[0][2] == board[1][1] && board[1][1] == board[2][0]));
             }
 
             // Act
