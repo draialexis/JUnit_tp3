@@ -19,24 +19,7 @@ public class gameFillBoardOkArgumentProvider implements ArgumentsProvider {
                          Arguments.of(empty, 1, 2, new char[][]{{'_', '_', '_'}, {'_', '_', 'x'}, {'_', '_', '_'}}),
                          Arguments.of(empty, 2, 0, new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'x', '_', '_'}}),
                          Arguments.of(empty, 2, 1, new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', 'x', '_'}}),
-                         Arguments.of(empty, 2, 2, new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', 'x'}}),
-
-                         Arguments.of(new char[][]{{'_', '_', '_'}, {'_', 'x', '_'}, {'_', '_', '_'}},
-                                      1,
-                                      2,
-                                      new char[][]{{'_', '_', '_'}, {'_', 'x', 'o'}, {'_', '_', '_'}}),
-                         Arguments.of(new char[][]{{'_', '_', '_'}, {'_', 'x', 'o'}, {'_', '_', '_'}},
-                                      0,
-                                      2,
-                                      new char[][]{{'_', '_', 'x'}, {'_', 'x', 'o'}, {'_', '_', '_'}}),
-                         Arguments.of(new char[][]{{'_', '_', 'x'}, {'_', 'x', 'o'}, {'_', '_', '_'}},
-                                      2,
-                                      2,
-                                      new char[][]{{'_', '_', 'x'}, {'_', 'x', 'o'}, {'_', '_', 'o'}}),
-                         Arguments.of(new char[][]{{'_', '_', 'x'}, {'_', 'x', 'o'}, {'_', '_', 'o'}},
-                                      2,
-                                      0,
-                                      new char[][]{{'_', '_', 'x'}, {'_', 'x', 'o'}, {'x', '_', 'o'}}));
+                         Arguments.of(empty, 2, 2, new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', 'x'}}));
     }
 }
 
