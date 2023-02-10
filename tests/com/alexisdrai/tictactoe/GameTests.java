@@ -15,6 +15,10 @@ public class GameTests {
     private static Random rdm;
     private Game game;
 
+    void resetBoard() {
+        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}});
+    }
+
     @BeforeAll
     static void initAll() {
         rdm = new Random();
@@ -115,7 +119,7 @@ public class GameTests {
     @Test
     void gameBoardDisplayEmpty() {
         // Arrange
-        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}});
+        resetBoard();
         String expected = """
                           _ _ _
                           _ _ _
@@ -163,11 +167,11 @@ public class GameTests {
     @Test
     void gameNextPlayerFoundStart() {
         // Arrange
-        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}});
+        resetBoard();
         char expected = 'x';
 
         // Act
-        char actual = game.nextPlayer();
+        char actual = game.getNextPlayer();
 
         // Assert
         assertEquals(expected, actual);
@@ -176,11 +180,13 @@ public class GameTests {
     @Test
     void gameNextPlayerFoundMiddle() {
         // Arrange
-        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', 'x', 'o'}, {'_', '_', 'x'}});
+        game.play(2, 2); //x
+        game.play(1, 2); //o
+        game.play(1, 1); //x
         char expected = 'o';
 
         // Act
-        char actual = game.nextPlayer();
+        char actual = game.getNextPlayer();
 
         // Assert
         assertEquals(expected, actual);
@@ -189,11 +195,18 @@ public class GameTests {
     @Test
     void gameNextPlayerFoundEnd() {
         // Arrange
-        game.setBoard(new char[][]{{'x', 'o', 'x'}, {'o', 'o', 'x'}, {'_', 'x', 'o'}});
+        game.play(0, 0); //x
+        game.play(0, 1); //o
+        game.play(0, 2); //x
+        game.play(1, 0); //o
+        game.play(1, 2); //x
+        game.play(1, 1); //o
+        game.play(2, 1); //x
+        game.play(2, 2); //o
         char expected = 'x';
 
         // Act
-        char actual = game.nextPlayer();
+        char actual = game.getNextPlayer();
 
         // Assert
         assertEquals(expected, actual);
@@ -201,47 +214,37 @@ public class GameTests {
 
     @Test
     void gameNextPlayerRdm() {
+        char expected = 'x';
 
-        for (int n = 0; n < 100; ++n) {
-            // Arrange
-            int nbX = rdm.nextInt(0, 6); // Max number of 'x' on grid, +1
-            int nbO = nbX - rdm.nextInt(0, 2); // number of 'x' - 0 or - 1
+        for (int i = 0; i < 100; i++) {
+            int x = rdm.nextInt(3);
+            int y = rdm.nextInt(3);
 
-            char expected;
-            if (nbX == nbO) {
-                expected = 'x';
+            assertEquals(expected, game.getNextPlayer());
+
+            boolean wasValid = game.play(x, y);
+            if (wasValid) { // if play is valid, next player
+                expected = expected == 'x' ? 'o' : 'x';
+            }
+        }
+    }
+
+    @Test
+    public void gamePlayRdm() {
+        for (int i = 0; i < 100; ++i) {
+            int x = rdm.nextInt(-10, 11);
+            int y = rdm.nextInt(-10, 11);
+
+            if (x < 0 || x > 2 || y < 0 || y > 2) {
+                assertFalse(game.play(x, y));
             }
             else {
-                if (nbX == nbO + 1) { // if 'x' has played 1 more than 'o', then it's 'o' 's turn
-                    expected = 'o';
-                }
-                else {
-                    throw new RuntimeException("this should never happen");
-                }
+                boolean expected = game.getBoard()[x][y] == '_';
+                boolean actual = game.play(x, y);
+
+                assertEquals(expected, actual);
+                assertTrue(game.getBoard()[x][y] == 'o' || game.getBoard()[x][y] == 'x');
             }
-
-            int x, y, turn = 1;
-            while (nbX > 0 && nbO > 0) { // randomly fill the grid
-
-                x = rdm.nextInt(0, 3); // in grid ([0 ; 2])
-                y = rdm.nextInt(0, 3);
-                if (game.getBoard()[x][y] == '_') {
-                    game.play(x, y);
-                    if (turn % 2 == 1) { // 'x' 's turn
-                        --nbX;
-                    }
-                    else { // 'o' 's turn'
-                        --nbO;
-                    }
-                    turn++;
-                }
-            }
-
-            // Act
-            char actual = game.nextPlayer();
-
-            // Assert
-            assertEquals(expected, actual);
         }
     }
 
@@ -249,32 +252,20 @@ public class GameTests {
     void gameIsOverRdm() {
 
         for (int n = 0; n < 100; ++n) {
-            // Arrange
-            int nbX = rdm.nextInt(4, 6); // Max number of 'x' on grid, + 1
-            int nbO = nbX - rdm.nextInt(0, 2); // number of 'x' - 0 or - 1
 
-            boolean expected = nbX == 5 && nbO == 4;
+            boolean expected;
 
-            int x, y, turn = 1;
-            while (nbX > 0 && nbO > 0) { // randomly fill the grid
-
-                x = rdm.nextInt(0, 3); // in grid ([0 ; 2])
-                y = rdm.nextInt(0, 3);
-                if (game.getBoard()[x][y] == '_') {
-                    game.play(x, y);
-                    if (turn % 2 == 1) { // 'x' 's turn
-                        --nbX;
-                    }
-                    else { // 'o' 's turn'
-                        --nbO;
-                    }
-                    turn++;
+            int validPlays = 0;
+            for (int i = 0; i < rdm.nextInt(20); i++) { // might fill the board, might not
+                if (game.play(rdm.nextInt(3), rdm.nextInt(3))) {
+                    ++validPlays;
                 }
             }
 
             char[][] board = game.getBoard();
-            if (!expected) { // if not full, check for winner instead
-                // only 8 ways to win this
+            if(validPlays == 9) { // if full
+                expected = true;
+            } else { // only 8 ways to win this
                 expected = ((board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||
                             (board[1][0] == board[1][1] && board[1][1] == board[1][2]) ||
                             (board[2][0] == board[2][1] && board[2][1] == board[2][2])

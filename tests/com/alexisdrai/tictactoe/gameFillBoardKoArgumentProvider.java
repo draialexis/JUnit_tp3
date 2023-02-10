@@ -11,7 +11,8 @@ public class gameFillBoardKoArgumentProvider implements ArgumentsProvider {
     public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
         char[][] empty = new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
 
-        return Stream.of(Arguments.of(empty, -1, 0, empty),
+        return Stream.of(
+                Arguments.of(empty, -1, 0, empty),
                          Arguments.of(empty, 0, -1, empty),
                          Arguments.of(empty, 0, 3, empty),
                          Arguments.of(empty, 3, 0, empty),
