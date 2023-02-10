@@ -1,4 +1,4 @@
-package com.alexisdrai;
+package com.alexisdrai.tictactoe;
 
 import java.util.Arrays;
 

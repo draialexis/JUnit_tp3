@@ -1,4 +1,4 @@
-package com.alexisdrai;
+package com.alexisdrai.tp3;
 
 public class Fibonacci {
     public int fib(int n) {

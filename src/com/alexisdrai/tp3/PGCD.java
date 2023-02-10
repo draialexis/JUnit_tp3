@@ -1,4 +1,4 @@
-package com.alexisdrai;
+package com.alexisdrai.tp3;
 
 public class PGCD {
     public int pgcd(int a, int b) {

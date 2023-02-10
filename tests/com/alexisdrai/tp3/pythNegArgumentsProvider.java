@@ -1,4 +1,4 @@
-package com.alexisdrai;
+package com.alexisdrai.tp3;
 
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.params.provider.Arguments;

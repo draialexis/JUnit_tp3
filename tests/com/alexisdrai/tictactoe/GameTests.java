@@ -1,5 +1,10 @@
-package com.alexisdrai;
+package com.alexisdrai.tictactoe;
 
+import com.alexisdrai.tictactoe.gameDoNotFinishArgumentProvider;
+import com.alexisdrai.tictactoe.gameFillBoardKoArgumentProvider;
+import com.alexisdrai.tictactoe.gameFillBoardOkArgumentProvider;
+import com.alexisdrai.tictactoe.gameFinishArgumentProvider;
+import com.alexisdrai.tictactoe.Game;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

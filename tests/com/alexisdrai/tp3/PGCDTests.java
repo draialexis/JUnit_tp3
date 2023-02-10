@@ -1,5 +1,6 @@
-package com.alexisdrai;
+package com.alexisdrai.tp3;
 
+import com.alexisdrai.tp3.PGCD;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

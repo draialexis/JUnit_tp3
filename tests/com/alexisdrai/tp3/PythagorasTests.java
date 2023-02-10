@@ -1,4 +1,4 @@
-package com.alexisdrai;
+package com.alexisdrai.tp3;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
