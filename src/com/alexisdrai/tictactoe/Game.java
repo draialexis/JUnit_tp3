@@ -126,21 +126,17 @@ public class Game {
         }
         return isFull() ||
 
-               (board[0][0] == board[0][1] && board[0][1] == board[0][2] && isAPlayer(board[0][0])) ||
-               (board[1][0] == board[1][1] && board[1][1] == board[1][2] && isAPlayer(board[1][0])) ||
-               (board[2][0] == board[2][1] && board[2][1] == board[2][2] && isAPlayer(board[2][0])) ||
+               (board[0][0] == board[0][1] && board[0][1] == board[0][2] && board[0][0] != '_') ||
+               (board[1][0] == board[1][1] && board[1][1] == board[1][2] && board[1][0] != '_') ||
+               (board[2][0] == board[2][1] && board[2][1] == board[2][2] && board[2][0] != '_') ||
 
-               (board[0][0] == board[1][0] && board[1][0] == board[2][0] && isAPlayer(board[0][0])) ||
-               (board[0][1] == board[1][1] && board[1][1] == board[2][1] && isAPlayer(board[0][1])) ||
-               (board[0][2] == board[1][2] && board[1][2] == board[2][2] && isAPlayer(board[0][2])) ||
+               (board[0][0] == board[1][0] && board[1][0] == board[2][0] && board[0][0] != '_') ||
+               (board[0][1] == board[1][1] && board[1][1] == board[2][1] && board[0][1] != '_') ||
+               (board[0][2] == board[1][2] && board[1][2] == board[2][2] && board[0][2] != '_') ||
 
-               (board[0][0] == board[1][1] && board[1][1] == board[2][2] && isAPlayer(board[0][0])) ||
-               (board[0][2] == board[1][1] && board[1][1] == board[2][0] && isAPlayer(board[0][2]));
+               (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != '_') ||
+               (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != '_');
 
-    }
-
-    private boolean isAPlayer(char c) {
-        return c == 'x' || c == 'o';
     }
 
     public String display() {
