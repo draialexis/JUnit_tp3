@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 class pythNegArgumentsProvider implements ArgumentsProvider {
 
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(Arguments.of(0, 4, 5),
                          Arguments.of(3, 0, 4),
                          Arguments.of(4, 3, 0),

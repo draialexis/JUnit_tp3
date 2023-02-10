@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 class pythNonRectArgumentsProvider implements ArgumentsProvider {
 
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(Arguments.of(Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE),
                          Arguments.of(1, 1, 1),
                          Arguments.of(5, 6, 10));

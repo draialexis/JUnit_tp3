@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class gameFillBoardOkArgumentProvider implements ArgumentsProvider {
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
         char[][] empty = new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}};
 
         return Stream.of(Arguments.of(empty, 0, 0, new char[][]{{'x', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}}),

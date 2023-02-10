@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public class gameFinishArgumentProvider implements ArgumentsProvider {
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
         return Stream.of(Arguments.of((Object) new char[][]{{'o', 'x', 'o'}, {'o', 'x', 'x'}, {'x', 'o', 'x'}}),
                          // stalemate
                          Arguments.of((Object) new char[][]{{'x', 'o', '_'}, {'x', 'o', 'x'}, {'_', 'o', '_'}}),

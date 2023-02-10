@@ -9,15 +9,15 @@ public class Game {
 
     private char nextPlayer;
 
-    public char getNextPlayer() {
-        return nextPlayer;
-    }
-
     public Game() {
         for (int i = 0; i < 3; ++i) {
             System.arraycopy(EMPTY[i], 0, board[i], 0, 3);
         }
         nextPlayer = 'x';
+    }
+
+    public char getNextPlayer() {
+        return nextPlayer;
     }
 
     public char[][] getBoard() {
@@ -41,6 +41,7 @@ public class Game {
             for (int j = 0; j < 3; j++) {
                 if (board[i][j] == '_') {
                     isFull = false;
+                    break;
                 }
             }
         }
@@ -186,7 +187,4 @@ public class Game {
         }
         return result;
     }
-
-    public int[] input() {return new int[]{0, 0};}
-    // will not be tested, uses Scanner and manual input, will be very simple
 }

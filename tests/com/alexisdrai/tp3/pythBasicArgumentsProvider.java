@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 class pythBasicArgumentsProvider implements ArgumentsProvider {
 
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext context) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
         return Stream.of(Arguments.of(3, 4, 5),
                          Arguments.of(3, 5, 4),
                          Arguments.of(4, 3, 5),

@@ -15,10 +15,6 @@ public class GameTests {
     private static Random rdm;
     private Game game;
 
-    void resetBoard() {
-        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}});
-    }
-
     @BeforeAll
     static void initAll() {
         rdm = new Random();
@@ -30,7 +26,7 @@ public class GameTests {
     }
 
     @Test
-    void canBeCted() {
+    void canBeConstructed() {
         assertInstanceOf(Game.class, game);
         assertEquals(3, game.getBoard().length); // rows
         assertEquals(3, game.getBoard()[0].length); // cols
@@ -130,6 +126,10 @@ public class GameTests {
 
         // Assert
         assertEquals(expected, actual);
+    }
+
+    void resetBoard() {
+        game.setBoard(new char[][]{{'_', '_', '_'}, {'_', '_', '_'}, {'_', '_', '_'}});
     }
 
     @Test
@@ -263,9 +263,10 @@ public class GameTests {
             }
 
             char[][] board = game.getBoard();
-            if(validPlays == 9) { // if full
+            if (validPlays == 9) { // if full
                 expected = true;
-            } else { // only 8 ways to win this
+            }
+            else { // only 8 ways to win this
                 expected = ((board[0][0] == board[0][1] && board[0][1] == board[0][2]) ||
                             (board[1][0] == board[1][1] && board[1][1] == board[1][2]) ||
                             (board[2][0] == board[2][1] && board[2][1] == board[2][2])
